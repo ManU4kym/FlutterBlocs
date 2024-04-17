@@ -1,16 +1,13 @@
 # bloc_concepts
 
-A new Flutter project.
+This is a simple project demonstrating the usage of Bloc (Business Logic Component) architecture in Flutter for state management. The project includes various examples covering different use cases and implementations of Bloc architecture.
+# Features
+
+Counter App: A basic Flutter app demonstrating the usage of Bloc pattern for managing the state of a counter.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To run the examples in this project, make sure you have Flutter installed on your machine. Then, follow these steps:
+ 1. clone this repo:
+    ```
+    git clone https://github.com/ManU4kym/FlutterBlocs
