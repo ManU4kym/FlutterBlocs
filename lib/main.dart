@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       create: (context) => CounterBlocCubit(),
       child: MaterialApp(
         title: 'Bloc Concepts',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
@@ -39,15 +40,28 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 185, 175, 123),
       appBar: AppBar(
         title: Text(widget.title),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        leading: const Icon(
+          Icons.settings,
+          color: Color.fromARGB(255, 130, 54, 54),
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            const Text('You have pushed the button this many times:'),
+            BlocBuilder<CounterBlocCubit, Counterstate>(
+              builder: (context, state) {
+                return Text(
+                  state.counterValue.toString(),
+                  style: const TextStyle(fontSize: 23),
+                );
+              },
             ),
             Text(
               '',
