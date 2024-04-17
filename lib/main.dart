@@ -1,4 +1,6 @@
+import 'package:bloc_concepts/cubit/counter_bloc_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +12,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bloc Concepts',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return BlocProvider(
+      create: (context) => CounterBlocCubit(),
+      child: MaterialApp(
+        title: 'Bloc Concepts',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const MyHomePage(title: 'BloCs'),
       ),
-      home: const MyHomePage(title: 'BloCs'),
     );
   }
 }
@@ -31,14 +36,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,17 +50,37 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            Padding(
+              padding: const EdgeInsets.all(28.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FloatingActionButton(
+                    onPressed: () {
+                      BlocProvider.of<CounterBlocCubit>(context).increment();
+                    },
+                    tooltip: 'Increment',
+                    child: const Icon(Icons.add),
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {
+                      BlocProvider.of<CounterBlocCubit>(context).decrement();
+                    },
+                    tooltip: 'decrement',
+                    child: const Icon(Icons.remove),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
     );
   }
 }
